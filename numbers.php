@@ -45,17 +45,17 @@
     {
         if (!$redis->set($GLOBALS['config']['redis_counter_key'], 0)) drop_error();
 
-        print 0;
+        return 0;
     }
 
     function redis_inc($redis)
     {
-        print $redis->incr($GLOBALS['config']['redis_counter_key']);
+        return $redis->incr($GLOBALS['config']['redis_counter_key']);
     }
 
     function redis_dec($redis)
     {
-        print $redis->decrBy($GLOBALS['config']['redis_counter_key'], 10);
+        return $redis->decrBy($GLOBALS['config']['redis_counter_key'], 10);
     }
 
 
@@ -79,7 +79,7 @@
     {
         write_to_file($fh, 0);
 
-        print 0;
+        return 0;
     }
 
     function file_inc($fh)
@@ -88,7 +88,7 @@
 
         write_to_file($fh, ++$data);
 
-        print $data;
+        return $data;
     }
 
     function file_dec($fh)
@@ -97,7 +97,7 @@
         $data -= 10;
         write_to_file($fh, $data);
 
-        print $data;
+        return $data;
     }
 
     function read_from_file($fh)
